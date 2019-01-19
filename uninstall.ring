@@ -1,8 +1,13 @@
-load "stdlib.ring"
-
 func main
 	? "Removing Folder : libsdl"
 	cDir = CurrentDir()
 	chdir(exefolder()+"../libdepwin")
 	OSDeleteFolder("libsdl")
 	chdir(cDir)
+
+func OSDeleteFolder cFolder 
+	if isWindows() 
+		systemSilent("rd /s /q " + cFolder)
+	else
+		systemSilent("rm -r " + cFolder)
+	ok
